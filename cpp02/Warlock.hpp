@@ -1,11 +1,10 @@
-#ifndef WARLOCK_HPP
-# define WARLOCK_HPP
+#pragma once
 
-#include <iostream>
-#include <string>
-#include <map>
-#include "ASpell.hpp"
-#include "SpellBook.hpp"
+# include <iostream>
+# include <string>
+# include <map>
+# include "ASpell.hpp"
+# include "SpellBook.hpp"
 
 class Warlock
 {
@@ -13,11 +12,12 @@ private:
 	std::string	_name;
 	std::string	_title;
 	SpellBook	_spellBook;
-
+	
 	Warlock();
 	Warlock(const Warlock& other);
 	Warlock	&operator=(const Warlock& other);
-
+	
+	
 public:
 	Warlock(std::string const& name, std::string const& title);
 	~Warlock();
@@ -27,10 +27,8 @@ public:
 
 	void	setTitle(std::string const& title);
 	void	introduce() const;
-
+	
 	void	learnSpell(ASpell* spell);
-	void	forgetSpell(std::string name);
-	void	launchSpell(std::string name, ATarget const& target);
+	void	forgetSpell(std::string spell);
+	void	launchSpell(std::string spell, const ATarget& target);
 };
-
-#endif

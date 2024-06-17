@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ATarget.hpp"
+# include "ATarget.hpp"
 
 class Dummy: public ATarget
 {

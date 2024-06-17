@@ -6,6 +6,7 @@ TargetGenerator::TargetGenerator(const TargetGenerator& other)
 {
 	*this = other;
 }
+
 TargetGenerator	&TargetGenerator::operator=(const TargetGenerator& other)
 {
 	if (this != &other)
@@ -13,12 +14,18 @@ TargetGenerator	&TargetGenerator::operator=(const TargetGenerator& other)
 	return *this;
 }
 
-TargetGenerator::~TargetGenerator() {}
+TargetGenerator::~TargetGenerator() 
+{
+	for (std::map<std::string, ATarget*>::iterator it = this->_targets.begin(); it != this->_targets.end(); ++it)
+		delete it->second;
+	this->_targets.clear();
+}
 
 void	TargetGenerator::learnTargetType(ATarget* target)
 {
 	if (target)
-		this->_targets[target->getType()] = target;
+		if (this->_targets.find(target->getType()) == this->_targets.end())
+			this->_targets[target->getType()] = target->clone();
 }
 
 void	TargetGenerator::forgetTargetType(std::string const& type)
